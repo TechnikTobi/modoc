@@ -1,12 +1,16 @@
 #include <SPI.h>
 
+// Need to include .cpp files for implementation of class functions/constructor/...
+#include "libs/HX711/Q2HX711.cpp"
+#include "libs/AdafruitNeoPixel/Adafruit_NeoPixel.cpp"
+
 #include "libs/modoc/pins.hpp"
 
 #include "advanced_pins.hpp"
 #include "pin_setup.hpp"
 
 
-void pin_setup() {
+AdvancedPins* pin_setup() {
     
 	// Digital
 	pinMode(Pin::Digital::UPM, INPUT);
@@ -27,8 +31,32 @@ void pin_setup() {
 	pinMode(Pin::PWM::RcKanal2, INPUT);
 	pinMode(Pin::PWM::RcKanal3, INPUT);
 
-	// Advanced
+	// Advanced pins - Servos
 	AdvancedPins* ap = new AdvancedPins;
-	ap->VBox = NULL; 	
-	 
+
+	ap->VBox = new Servo;
+	ap->VBox->attach(Pin::PWM::VBox);	
+
+	ap->EBox = new Servo;
+	ap->EBox->attach(Pin::PWM::EBox);
+
+	// Advanced pins - HX711
+	ap->Drehmoment = new Q2HX711(
+		Pin::Digital::DrehmomentData, 
+		Pin::Digital::DrehmomentClock
+	);
+
+	ap->Schub = new Q2HX711(
+		Pin::Digital::SchubData,
+		Pin::Digital::SchubClock
+	);
+
+	// Advanced pins - Neo Pixel LED
+	ap->NeoLED = new Adafruit_NeoPixel(
+		NeoLEDnumPixels, 
+		Pin::Digital::NeoLED, 
+		NEO_GRB + NEO_KHZ800
+	);
+
+	return ap;
 }

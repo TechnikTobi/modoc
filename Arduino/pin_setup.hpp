@@ -1,6 +1,8 @@
 #ifndef PIN_SETUP_H
 #define PIN_SETUP_H
 
-void pin_setup();
+#include "advanced_pins.hpp"
+
+AdvancedPins* pin_setup();
 
 #endif
