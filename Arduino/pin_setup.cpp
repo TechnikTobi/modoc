@@ -9,7 +9,7 @@ void pin_setup() {
     pinMode(Pin::Digital::UPM, INPUT);
     pinMode(Pin::Digital::USBstart, INPUT);
     
-	pinMode(Pin::Digital::Taste1, INPUT_PULLUP);
+    pinMode(Pin::Digital::Taste1, INPUT_PULLUP);
     pinMode(Pin::Digital::Taste2, INPUT_PULLUP);
     pinMode(Pin::Digital::Taste3, INPUT_PULLUP);
     pinMode(Pin::Digital::Taste4, INPUT_PULLUP);
