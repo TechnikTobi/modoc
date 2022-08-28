@@ -1,19 +1,21 @@
 #include <SPI.h>
 #include <Servo.h>
 
-#include "libs/AdafruitNeoPixel/Adafruit_NeoPixel.h"
-#include "libs/HX711/Q2HX711.h"
-
-#include "libs/modoc/pins.hpp"
-#include "libs/modoc/fields.hpp"
-
 #include "advanced_pins.hpp"
 #include "pin_setup.hpp"
+#include "neoled_helper.hpp"
 
 void setup() {
-  // put your setup code here, to run once:
-  Pin::Digital x = Pin::Digital::Taste1; 
-  pin_setup();
+
+  Serial.begin(9600);
+
+  // Setup & Initialization of all the pins and their devices
+  AdvancedPins* advancedPins = pin_setup();
+
+  // Clear NeoLED pixels, wait 200ms
+  NeoLED::clearAll(advancedPins->NeoLED);
+  delay(200);
+  
 }
 
 void loop() {
