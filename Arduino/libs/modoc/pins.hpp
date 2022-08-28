@@ -5,10 +5,10 @@ namespace Pin {
 
 	enum Digital {
 		UPM =			22,	// 3pol Buchse mit 5V, GND
-		HX711DrehmomentData =	33,	// 2pol Buchse + weitere Buchse 5V, GND
-		HX711DrehmomentClock =	35,	// -"-
-		HX711SchubData =	37,	// 2pol Buchse + weitere Buchse 5V, GND
-		HX711SchubClock =	39,	// -"-
+		DrehmomentData =	33,	// 2pol Buchse + weitere Buchse 5V, GND (HX711)
+		DrehmomentClock =	35,	// -"-
+		SchubData =		37,	// 2pol Buchse + weitere Buchse 5V, GND (HX711)
+		SchubClock =		39,	// -"-
 		VCCrelai =		24,	// direktes Kabel
 		USBstart =		28,
 		Taste1 =		25,	// zusätzlich GND Buchse
