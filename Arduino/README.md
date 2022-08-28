@@ -1,5 +1,25 @@
 # Notizen bezüglich Arduino
 
+## 0. HTX711 Verkabelung
+```
+  +-+
+  +-+
+ +---+
+ |   |
+ |   |
+ |   |   4 pol Klinkenstecker
+ |   |   (Farbe ist vom dünnen Drah des Klinkensteckerkabels)
+ |   |
+ +---+
+  | |    GND (rot)
+
+  | |    VCC (orange / weiß)
+
+  | |    SCK - Clock (blau)
+
+  |_|    DT - Data   (grün)
+```
+
 ## 1. Drehmoment
 
 ```DiagMx[1] = (hx711a.read()/100.0-eichung1)/eichung2*eichung3;``` ... ergibt den Wert in Gramm
@@ -30,20 +50,26 @@ for (ui = 1; ui <= 5; ui++)     // 5 mal Messen, dann wird es genauer
 {
   upmpulse = pulseIn (upmpin, HIGH, 100000); // Timeout = 1/10 sec
   
-  /* 
-   *  falsch    upmcalc += 6000000/upmpulse; 
-   *            zb zeigt bei 1.210 Upm (Referenzmessung mit externem Drehzahlmesser) 
-   *            der Arduino an: 4.200 als durchschnittlich um 3,5 zuviel
-   *  falsch    upmcalc += 6000000/upmpulse;
-   *            ... durchschnittlich um 4,37 zuviel
-  */
+  //  falsch    upmcalc += 6000000/upmpulse; 
+  //            zb zeigt bei 1.210 Upm (Referenzmessung mit externem Drehzahlmesser) 
+  //            der Arduino an: 4.200 als durchschnittlich um 3,5 zuviel
+  //  falsch    upmcalc += 6000000/upmpulse;
+  //            ... durchschnittlich um 4,37 zuviel
 
 
-  // upmpulse ... Zeit zwischen einem Propellerblatt am Sensor vorbei bis zum nächsten in Microsekunden = 1.000.000tel sec
-  // 1000 U/Min mit 2-Blatt Prop -> 2000 Impulse pro Minute -> 33,3 Impulse pro Sec -> upmpulse = 30.000
-  // 1 U/Min mit 2-Blatt Prop -> 2 Impulse pro Minute -> 0,03 Impulse pro Sec -> upmpulse = 30.000.000
-  // 30.000.000 ->  1 upm
-  // dann wäre also    upmcalc += 30000000/upmpulse; -> 5x so hoch. Das ist aber noch mehr falsch
+  // upmpulse ... Zeit zwischen einem Propellerblatt am Sensor vorbei
+  //              bis zum Nächsten in Microsekunden = 1.000.000tel sec
+  // 1000 U/Min mit 2-Blatt Prop 
+  //  -> 2000 Impulse pro Minute 
+  //  -> 33,3 Impulse pro Sec 
+  //  -> upmpulse = 30.000
+  // 1 U/Min mit 2-Blatt Prop 
+  //  -> 2 Impulse pro Minute 
+  //  -> 0,03 Impulse pro Sec 
+  //  -> upmpulse = 30.000.000
+  // 30.000.000 -> 1upm
+  // dann wäre also upmcalc += 30000000/upmpulse; 
+  //  -> 5x so hoch. Das ist aber noch mehr falsch
 
   // also erstmal laut Referenzmessung /3,5  -> 1714285
   // also erstmal laut Referenzmessung /4,37 -> 1371293
@@ -81,7 +107,7 @@ Mit vier Widerständen den Wiegesensor nachgebaut, der Shut liefert dann die Dif
 - A+ zum ESC-Minus
 - Alle 4 Widerstände "R" normale 1KOhm Typen (entspricht Ohmsche Werte vom Wiegesensor)
 
-```/*
+```
        +-------------+----( E+
        |             |
       +-+           +-+
@@ -99,7 +125,7 @@ Mit vier Widerständen den Wiegesensor nachgebaut, der Shut liefert dann die Dif
       +-+           +-+
        |             |
        +-------------+----( E-
-*/```
+```
 
 - ```DiagMx[5] = (hx711c.read()/1.0-eichungs1)/eichungs2*100;``` der /1.0 ist nötig, da sonst die Berechnung nicht mit Gleitkomma erfolgt. float hilft nix !
 - ```DiagVx[5] = constrain(map(DiagMx[5],1,DiagMm[5],Diagymax,Diagymin),Diagymin,Diagymax);```
@@ -116,7 +142,7 @@ DiagMx[5] = strom * 100;    // kommt ja als hA (Hundertstel Amper) zur Anzeige
 ```
 
 ## 6. Temperatur
-```/*
+```
   +---------------( +5V
   |           
  +-+          
@@ -132,7 +158,7 @@ DiagMx[5] = strom * 100;    // kommt ja als hA (Hundertstel Amper) zur Anzeige
  +-+   
   |            
   +----------------( Masse
-*/```
+```
 
 Messwerte mit Ohmmeter:
 |  oC |  Ohm |
