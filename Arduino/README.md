@@ -1,6 +1,6 @@
 # Notizen bezüglich Arduino
 
-## 0. HTX711 Verkabelung
+## 0. HX711 Verkabelung
 ```
   +-+
   +-+
