@@ -1,0 +1,5 @@
+# Notizen bezüglich Arduino
+
+## Drehmoment
+
+
