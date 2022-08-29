@@ -14,36 +14,36 @@ static AdvancedPins* advancedPins = NULL;
 
 void setup() {
 
-  // Initialize serial connection
-  SerialHandler::init();
+	// Initialize serial connection
+	SerialHandler::init();
 
-  // Setup & Initialization of all the pins and their devices
-  advancedPins = Setup::pin_setup();
-  if (advancedPins == NULL) abort();
-  Setup::pin_init(advancedPins);
+	// Setup & Initialization of all the pins and their devices
+	advancedPins = Setup::pin_setup();
+	if (advancedPins == NULL) abort();
+	Setup::pin_init(advancedPins);
 
-  // Perform LED startup sequence
-  Setup::led_startup(advancedPins->NeoLED);
-  
+	// Perform LED startup sequence
+	Setup::led_startup(advancedPins->NeoLED);
+
 }
 
 void loop() {
 
-  // Read the data from the pins
-  ReadResult* readResult = readData(SOURCE_VERSION);
+	// Read the data from the pins
+	ReadResult* readResult = readData(advancedPins, SOURCE_VERSION);
 
-  // Send the data via the serial connection to the RPi
-  SerialHandler::sendData(
-    readResult->data,
-    readResult->dataSize,
-    advancedPins->NeoLED
-  );
+	// Send the data via the serial connection to the RPi
+	SerialHandler::sendData(
+		readResult->data,
+		readResult->dataSize,
+		advancedPins->NeoLED
+	);
 
-  // Check for shutdown
-  if (readResult->shutdown) Shutdown::gracefully(advancedPins->NeoLED);
+	// Check for shutdown
+	if (readResult->shutdown) Shutdown::gracefully(advancedPins->NeoLED);
 
-  // Don't forget to free the memory!
-  free(readResult->data);
-  free(readResult);
-  
+	// Don't forget to free the memory!
+	free(readResult->data);
+	free(readResult);
+
 }
