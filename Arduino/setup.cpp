@@ -1,5 +1,7 @@
 #include <SPI.h>
 
+#include "libs/AdafruitNeoPixel/Adafruit_NeoPixel.h"
+
 // Need to include .cpp file for implementation of class functions/constructor/...
 #include "libs/HX711/Q2HX711.cpp"
 
@@ -9,7 +11,7 @@
 #include "neoled_helper.hpp"
 #include "setup.hpp"
 
-AdvancedPins* pin_setup() {
+AdvancedPins* Setup::pin_setup() {
     
 	// Digital
 	pinMode(Pin::Digital::UPM, INPUT);
@@ -63,7 +65,7 @@ AdvancedPins* pin_setup() {
 	return ap;
 }
 
-void pin_init(AdvancedPins* ap) {
+void Setup::pin_init(AdvancedPins* ap) {
 
 	/*
 	Beim Start des Arduino soll der zweite PNP Transistor sperren
@@ -84,10 +86,10 @@ void pin_init(AdvancedPins* ap) {
 
 }
 
-void led_startup(AdvancedPins* ap) {
+void Setup::led_startup(Adafruit_NeoPixel* neoLED) {
 
 	// Clear NeoLED pixels, wait 200ms
-	NeoLED::clearAll(ap->NeoLED);
+	NeoLED::clearAll(neoLED);
 	delay(200);
 
 	for (int pixel_index = NeoLED::NumPixels; pixel_index > 0; pixel_index++) { 
@@ -95,7 +97,7 @@ void led_startup(AdvancedPins* ap) {
 		// Incrementally increase pixel intensity
 		for (int intensity = 0; intensity < 101; intensity++) {
 			NeoLED::setColor(
-				ap->NeoLED,
+				neoLED,
 				pixel_index, 
 				intensity, (pixel_index == 0 ? intensity : 0), 0
 			); 
