@@ -50,6 +50,7 @@ namespace Field {
 		Taste4 =		33,
 		NotAus =		34,
 		OffButton =		35,
+		USBstart =		36,
 	};
 	
 	enum Info {			// Indices: 40-49
