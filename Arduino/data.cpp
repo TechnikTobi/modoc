@@ -1,9 +1,10 @@
 #include "libs/modoc/fields.hpp"
 #include "libs/modoc/pins.hpp"
 
+#include "advanced_pins.hpp"
 #include "data.hpp"
 
-ReadResult* readData(long int sourceVersion) {
+ReadResult* readData(AdvancedPins *ap, long int sourceVersion) {
 
 	// Allocate memory
 	long int *data = (long int*)malloc(sizeof(long int) * Field::TotalNum);
@@ -14,7 +15,7 @@ ReadResult* readData(long int sourceVersion) {
 	}
 
 	// Read in the different sections of the data
-	readDataGeneral(data);
+	readDataGeneral(ap, data);
 	readDataTemperatur(data);
 	readDataControl(data);
 	readDataInfo(data, sourceVersion);
@@ -29,7 +30,7 @@ ReadResult* readData(long int sourceVersion) {
 	return result;
 }
 
-void readDataGeneral(long int *data) {
+void readDataGeneral(AdvancedPins *ap, long int *data) {
 
 	// Calculation of UPM ("Umdrehungen pro Minute")
 	// Take multiple samples to average out fluctuations
@@ -42,8 +43,8 @@ void readDataGeneral(long int *data) {
 	UPMvalue /= UPMcycles;
 
 	data[Field::General::UPM] = UPMvalue;
-	data[Field::General::Drehmoment] = 0;
-	data[Field::General::Schub] = 0;
+	data[Field::General::Drehmoment] = ap->Drehmoment->read();
+	data[Field::General::Schub] = ap->Schub->read();
 	data[Field::General::Spannung] = analogRead(Pin::Analog::Spannung);
 	data[Field::General::Strom] = analogRead(Pin::Analog::Strom);
 	data[Field::General::GasPotiVBox] = analogRead(Pin::Analog::GasPotiVBox);

@@ -14,8 +14,8 @@ struct ReadResult {
 static const int UPMcycles = 5;
 static const int UPMtimeoutMicroseconds = 100000;
 
-ReadResult* readData(long int sourceVersion);
-void readDataGeneral(long int *data);
+ReadResult* readData(AdvancedPins *ap, long int sourceVersion);
+void readDataGeneral(AdvancedPins *ap, long int *data);
 void readDataTemperatur(long int *data);
 void readDataControl(long int *data);
 void readDataInfo(long int *data, long int sourceVersion);
