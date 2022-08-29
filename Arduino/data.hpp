@@ -1,9 +1,12 @@
 #ifndef DATA_H
 #define DATA_H
 
+#include <Arduino.h>
+
 struct ReadResult {
 
 	long int *data;
+	size_t dataSize;
 	bool shutdown;
 
 };

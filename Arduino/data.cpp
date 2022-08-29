@@ -13,14 +13,17 @@ ReadResult* readData(long int sourceVersion) {
 		data[i] = 0;
 	}
 
+	// Read in the different sections of the data
 	readDataGeneral(data);
 	readDataTemperatur(data);
 	readDataControl(data);
 	readDataInfo(data, sourceVersion);
 	readDataString(data);
 	
+	// Construct the return value
 	ReadResult *result = new ReadResult; 
 	result->data = data;
+	result->dataSize = Field::TotalNum;
 	result->shutdown = (data[Field::Control::OffButton] == LOW);
 
 	return result;
@@ -83,6 +86,7 @@ void readDataControl(long int *data) {
 	data[Field::Control::Taste4] = digitalRead(Pin::Digital::Taste4);
 	data[Field::Control::NotAus] = digitalRead(Pin::Digital::NotAus);
 	data[Field::Control::OffButton] = digitalRead(Pin::Digital::OffButton);
+	data[Field::Control::USBstart] = digitalRead(Pin::Digital::USBstart);
 
 }
 
