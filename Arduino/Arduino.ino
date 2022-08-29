@@ -2,7 +2,7 @@
 #include <Servo.h>
 
 #include "advanced_pins.hpp"
-#include "pin_setup.hpp"
+#include "setup.hpp"
 #include "neoled_helper.hpp"
 
 void setup() {
