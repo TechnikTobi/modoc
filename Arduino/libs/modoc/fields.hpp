@@ -1,6 +1,8 @@
 #ifndef FIELDS_H
 #define FIELDS_H
 
+#include <Arduino.h>
+
 namespace Field {
 
 	// Total number of fields to allocate,
