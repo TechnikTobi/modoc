@@ -32,7 +32,7 @@ void readDataGeneral(long int *data) {
 	// Take multiple samples to average out fluctuations
 	unsigned long UPMvalue = 0;
 	for (int i = 0; i < UPMcycles; i++) {
-		UPMpulse = pulseIn(Pin::Digital::UPM, HIGH, UPMtimeoutMicroseconds);
+		unsigned long UPMpulse = pulseIn(Pin::Digital::UPM, HIGH, UPMtimeoutMicroseconds);
 		if (UPMpulse == 0) break;
 		UPMvalue += UPMpulse;
 	}
