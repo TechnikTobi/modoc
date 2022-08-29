@@ -13,7 +13,7 @@ void shutdown(Adafruit_NeoPixel* neoLED) {
 			neoLED,
 			0,
 			30, 0, 0
-		)
+		);
 		delay(200);
 		NeoLED::clear(neoLED, 0);
 		delay(200);
