@@ -8,9 +8,23 @@ namespace NeoLED {
 
 	static const unsigned int NumPixels = 3;
 
-	void begin(Adafruit_NeoPixel *pixels);
-	void clear(Adafruit_NeoPixel *pixels, unsigned int index);
-	void clearAll(Adafruit_NeoPixel *pixels);
+	void begin(
+		Adafruit_NeoPixel *pixels
+	);
+	void setColor(
+		Adafruit_NeoPixel *pixels, 
+		unsigned int index, 
+		unsigned int red, 
+		unsigned int green, 
+		unsigned int blue
+	);
+	void clear(
+		Adafruit_NeoPixel *pixels, 
+		unsigned int index
+	);
+	void clearAll(
+		Adafruit_NeoPixel *pixels
+	);
 };
 
 #endif
