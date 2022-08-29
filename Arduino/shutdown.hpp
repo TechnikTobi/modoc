@@ -3,6 +3,9 @@
 
 #include "libs/AdafruitNeoPixel/Adafruit_NeoPixel.h"
 
-void shutdown(Adafruit_NeoPixel* neoLED);
+namespace Shutdown {
+	void gracefully(Adafruit_NeoPixel* neoLED);
+	void emergency();
+}
 
 #endif

@@ -3,7 +3,7 @@
 #include "neoled_helper.hpp"
 #include "shutdown.hpp"
 
-void shutdown(Adafruit_NeoPixel* neoLED) {
+void Shutdown::gracefully(Adafruit_NeoPixel* neoLED) {
 
 	// Warten bis Raspberry heruntergefahren ist
 	// Durch das Herunterfahren des RPi wird auch dessen
@@ -37,4 +37,8 @@ void shutdown(Adafruit_NeoPixel* neoLED) {
 	// und das Relais abfällt
 	digitalWrite(Pin::Digital::VCCrelai, LOW);
 
+}
+
+void Shutdown::emergency() {
+	digitalWrite(Pin::Digital::VCCrelai, LOW);
 }
