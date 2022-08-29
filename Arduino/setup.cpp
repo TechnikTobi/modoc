@@ -7,7 +7,7 @@
 
 #include "advanced_pins.hpp"
 #include "neoled_helper.hpp"
-#include "pin_setup.hpp"
+#include "setup.hpp"
 
 AdvancedPins* pin_setup() {
     
@@ -23,44 +23,24 @@ AdvancedPins* pin_setup() {
 	pinMode(Pin::Digital::OffButton, INPUT_PULLUP);
 	
 	pinMode(Pin::Digital::VCCrelai, OUTPUT);
-	digitalWrite(Pin::Digital::VCCrelai, HIGH);
-		/*
-		Beim Start des Arduino soll der zweite PNP Transistor sperren
-		(das macht er auch ohne HIGH auf diesem Kabel), damit bleibt
-		der erste PNP Transistor leitend und das Relais bleibt angezogen
-		*/
-
 	pinMode(Pin::Digital::RecordLED, OUTPUT);
-	digitalWrite(Pin::Digital::RecordLED, HIGH);
-		/*
-		Beim Starten des Arduino soll der PNP Transistor sperren
-		(-> RecordLED leuchtet nicht)
-		*/
-
-	
 
 	// Analog
 	// Don't need setup using pinMode!
-
-
 
 	// PWM
 	pinMode(Pin::PWM::RcKanal1, INPUT);
 	pinMode(Pin::PWM::RcKanal2, INPUT);
 	pinMode(Pin::PWM::RcKanal3, INPUT);
 
-
-
 	// Advanced pins - Servos
 	AdvancedPins* ap = new AdvancedPins;
 
 	ap->VBox = new Servo;
 	ap->VBox->attach(Pin::PWM::VBox);	
-	ap->VBox->writeMicroseconds(ServoIdle);
 
 	ap->EBox = new Servo;
 	ap->EBox->attach(Pin::PWM::EBox);
-	ap->EBox->writeMicroseconds(ServoIdle);
 
 	// Advanced pins - HX711
 	ap->Drehmoment = new Q2HX711(
@@ -79,7 +59,58 @@ AdvancedPins* pin_setup() {
 		Pin::Digital::NeoLED, 
 		NEO_GRB + NEO_KHZ800
 	);
-	NeoLED::begin(ap->NeoLED);
 
 	return ap;
 }
+
+void pin_init(AdvancedPins* ap) {
+
+	/*
+	Beim Start des Arduino soll der zweite PNP Transistor sperren
+	(das macht er auch ohne HIGH auf diesem Kabel), damit bleibt
+	der erste PNP Transistor leitend und das Relais bleibt angezogen
+	*/
+	digitalWrite(Pin::Digital::VCCrelai, HIGH);
+	
+	/*
+	Beim Starten des Arduino soll der PNP Transistor sperren
+	(-> RecordLED leuchtet nicht)
+	*/
+	digitalWrite(Pin::Digital::RecordLED, HIGH);
+	
+	ap->VBox->writeMicroseconds(ServoIdle);
+	ap->EBox->writeMicroseconds(ServoIdle);
+	NeoLED::begin(ap->NeoLED);
+
+}
+
+void led_startup(AdvancedPins* ap) {
+
+	// Clear NeoLED pixels, wait 200ms
+	NeoLED::clearAll(ap->NeoLED);
+	delay(200);
+
+	for (int pixel_index = NeoLED::NumPixels; pixel_index > 0; pixel_index++) { 
+
+		// Incrementally increase pixel intensity
+		for (int intensity = 0; intensity < 101; intensity++) {
+			NeoLED::setColor(
+				ap->NeoLED,
+				pixel_index, 
+				intensity, (pixel_index == 0 ? intensity : 0), 0
+			); 
+			delay(1);
+		}
+
+		if (pixel_index == NeoLED::NumPixels) {
+			for (int blink_step = 0; blink_step < 20; blink_step++) {
+				digitalWrite(Pin::Digital::RecordLED, LOW);
+				delay(10);
+				digitalWrite(Pin::Digital::RecordLED, HIGH);
+				delay(40);
+			}
+
+			delay(100);
+		}
+	}
+} 

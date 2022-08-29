@@ -1,9 +1,11 @@
 #include <SPI.h>
 #include <Servo.h>
 
+#include "libs/modoc/pins.hpp"
+
 #include "advanced_pins.hpp"
-#include "setup.hpp"
 #include "neoled_helper.hpp"
+#include "setup.hpp"
 
 void setup() {
 
@@ -11,14 +13,15 @@ void setup() {
 
   // Setup & Initialization of all the pins and their devices
   AdvancedPins* advancedPins = pin_setup();
+  pin_init(advancedPins);
 
-  // Clear NeoLED pixels, wait 200ms
-  NeoLED::clearAll(advancedPins->NeoLED);
-  delay(200);
+  // Perform LED startup sequence
+  led_startup(advancedPins);
   
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
+  
 
 }
