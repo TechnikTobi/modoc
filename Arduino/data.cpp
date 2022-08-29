@@ -28,20 +28,32 @@ ReadResult* readData(long int sourceVersion) {
 
 void readDataGeneral(long int *data) {
 
-	data[Field::General::UPM] = 0;
+	// Calculation of UPM ("Umdrehungen pro Minute")
+	// Take multiple samples to average out fluctuations
+	unsigned long UPMvalue = 0;
+	for (int i = 0; i < UPMcycles; i++) {
+		UPMpulse = pulseIn(Pin::Digital::UPM, HIGH, UPMtimeoutMicroseconds);
+		if (UPMpulse == 0) break;
+		UPMvalue += UPMpulse;
+	}
+	UPMvalue /= UPMcycles;
+
+	data[Field::General::UPM] = UPMvalue;
 	data[Field::General::Drehmoment] = 0;
 	data[Field::General::Schub] = 0;
+	data[Field::General::Spannung] = analogRead(Pin::Analog::Spannung);
+	data[Field::General::Strom] = analogRead(Pin::Analog::Strom);
+	data[Field::General::GasPotiVBox] = analogRead(Pin::Analog::GasPotiVBox);
+	data[Field::General::GasPotiEBox] = analogRead(Pin::Analog::GasPotiEBox);
 	// RPi: data[Field::General::Ausgangsleistung] = 0;
-	data[Field::General::Strom] = 0;
 	// RPi: data[Field::General::Eingangsleistung] = 0;
 	// RPi: data[Field::General::Wirkungsgrad] = 0;
-	data[Field::General::Spritverbrauch] = 0;
 	// RPi: data[Field::General::DeltaMax] = 0;
-	data[Field::General::GasPotiVBox] = 0;
-	data[Field::General::GasPotiEBox] = 0;
 	// RPi: data[Field::General::GasProgramm] = 0;
-	data[Field::General::Schallpegel] = 0;
-	data[Field::General::Vibration] = 0;
+	// Missing: data[Field::General::Spritverbrauch] = 0;
+	// Missing: data[Field::General::Schallpegel] = 0;
+	// Missing: data[Field::General::Vibration] = 0;
+	// Note: RcKanal1-3 deprecated as of 2020-02-23: Entfernt für höhere Samplingrate
 	// Deprecated: data[Field::General::RcKanal1] = pulseIn(Pin::PWM::RcKanal1, HIGH, 20000);
 	// Deprecated: data[Field::General::RcKanal2] = pulseIn(Pin::PWM::RcKanal2, HIGH, 20000);
 	// Deprecated: data[Field::General::RcKanal3] = pulseIn(Pin::PWM::RcKanal3, HIGH, 20000);
