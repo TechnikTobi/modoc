@@ -7,8 +7,8 @@
 namespace Setup {
 
 	AdvancedPins* pin_setup();
-	void pin_init(AdvancedPins* ap);
-	void led_startup(Adafruit_NeoPixel* neoLED);
+	void pin_init(AdvancedPins *ap);
+	void led_startup(Adafruit_NeoPixel *neoLED);
 
 }
 

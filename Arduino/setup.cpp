@@ -65,7 +65,7 @@ AdvancedPins* Setup::pin_setup() {
 	return ap;
 }
 
-void Setup::pin_init(AdvancedPins* ap) {
+void Setup::pin_init(AdvancedPins *ap) {
 
 	/*
 	Beim Start des Arduino soll der zweite PNP Transistor sperren
