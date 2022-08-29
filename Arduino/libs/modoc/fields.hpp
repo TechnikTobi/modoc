@@ -3,6 +3,10 @@
 
 namespace Field {
 
+	// Total number of fields to allocate,
+	// leaving some empty to expand in the future
+	static const size_t TotalNum =	64;
+
 	enum General {			// Indices: 0-19
 		UPM =			0,
 		Drehmoment =		1,
@@ -24,19 +28,19 @@ namespace Field {
 	};
 
 	enum Temperatur {		// Indices: 20-29
-		Temperatur1 =		20,
-		Temperatur2 =		21,
-		Temperatur3 =		22,
-		Temperatur4 =		23,
-		Temperatur5 =		24,
-		Temperatur6 =		25,
-		Temperatur7 =		26,
-		Temperatur8 =		27,
-		TemperaturEnv =		28,
+		T1 =			20,
+		T2 =			21,
+		T3 =			22,
+		T4 =			23,
+		T5 =			24,
+		T6 =			25,
+		T7 =			26,
+		T8 =			27,
+		TEnv =			28,
 		FeuchtigkeitEnv =	29,
 	};
 
-	enum Controls {			// Indices: 30-39
+	enum Control {			// Indices: 30-39
 		Taste1 =		30,
 		Taste2 =		31,
 		Taste3 =		32,
@@ -47,14 +51,14 @@ namespace Field {
 	
 	enum Info {			// Indices: 40-49
 		ArduinoVersion =	40,
-		Messdauer =		41,
-		VCCspannung =		42,
+		VCCspannung =		41,
+		Messdauer =		42,
 		TemperaturCPU =		43,
 		RTCDate =		44,
 		RTCTime =		45,
 	};
 
-	enum Strings {			// Indices: 50-59
+	enum String {			// Indices: 50-59
 		Motor =			50,
 		Propeller =		51,
 		Akku =			52,
