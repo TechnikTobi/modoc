@@ -12,7 +12,7 @@ struct ReadResult {
 };
 
 static const int UPMcycles = 5;
-static const int UPMtimeoutMicroseconds = 100000;
+static const unsigned long UPMtimeoutMicroseconds = 100000;
 
 ReadResult* readData(AdvancedPins *ap, long int sourceVersion);
 void readDataGeneral(AdvancedPins *ap, long int *data);
