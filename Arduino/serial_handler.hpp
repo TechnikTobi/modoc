@@ -7,7 +7,7 @@
 
 namespace SerialHandler {
 
-	static const int baudrate = 9600;
+	static const int baudrate = 19200;
 
 	void init();
 	void sendData(
