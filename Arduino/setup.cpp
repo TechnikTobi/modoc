@@ -86,13 +86,13 @@ void Setup::pin_init(AdvancedPins *ap) {
 
 }
 
-void Setup::led_startup(Adafruit_NeoPixel* neoLED) {
+void Setup::led_startup(Adafruit_NeoPixel *neoLED) {
 
 	// Clear NeoLED pixels, wait 200ms
 	NeoLED::clearAll(neoLED);
 	delay(200);
 
-	for (int pixel_index = NeoLED::NumPixels; pixel_index > 0; pixel_index++) { 
+	for (int pixel_index = NeoLED::NumPixels; pixel_index > 0; pixel_index--) { 
 
 		// Incrementally increase pixel intensity
 		for (int intensity = 0; intensity < 101; intensity++) {
