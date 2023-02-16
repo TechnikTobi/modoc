@@ -1,0 +1,11 @@
+fensterBreite;1920
+fensterHoehe;1035
+fensterBreiteAufteilungWertegruppenRundinstrumente;55
+fensterHoeheAufteilungWertegruppenRundinstrumente;33
+abstandZumRand;10
+dockHoehe;100
+rundinstrumentSchattenXoffset;10
+rundinstrumentSchattenYoffset;10
+Rundinstrumente;Temp1/Temp2/Temp3/Temp4/Gas
+Graphen;Temp1,Temp2,Temp3,Temp4,Temp5,Temp6,Temp7,Temp8/Drehzahl
+Wertegruppe;Temp1/Drehzahl

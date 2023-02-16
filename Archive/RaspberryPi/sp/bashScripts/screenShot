@@ -1,0 +1,66 @@
+############################################################
+### Wird vom Pythonprogramm aufgerufen mit Parameter Testbeschreibung (-> $1)
+### Prüft ob /media/pi/MODOC vorhanden ist
+### Falls nicht vorhanden, legt /Screenshots an 
+### Erstellt einen Screenshot
+### Speichert den Screenshot unter nnnn_Testbeschreibung.png
+############################################################
+# [ ] { } / * ' 
+############################################################
+echo ""
+echo "Bash screenShot gestartet"
+echo "  Prüfe Stick..."
+
+if [ -d /media/pi/MODOC ]
+  then
+    echo "   ...Stick mit Name MODOC vorhanden"
+  else
+    echo "  ***** Kein Stick mit Name MODOC vorhanden *****"
+    echo "Bash beendet"; exit
+fi            
+cd /media/pi/MODOC
+
+if [ ! -d Screenshots ]
+  then
+    echo "   ...Verzeichnis Screenshots wird angelegt"
+    mkdir Screenshots
+    if [ ! -d Screenshots ]
+      then
+        echo "  ***** Verzeichnis Screenshots konnte nicht angelegt werden *****"
+        echo "Bash beendet"; exit
+    fi
+  else
+    echo "   ...Verzeichnis Screenshots vorhanden"
+fi            
+
+cd Screenshots
+#echo "Vorhandene Files.."
+#ls -l
+
+if ls 0001*.png 1> /dev/null 2>&1
+  then
+    for file in ./*.png; do
+      fname=$(basename "$file")
+    done
+    letztenummer=$(echo ${fname%_*} | egrep -o '[1-9][0-9]*' | sort -nr | head -1)
+  else
+    letztenummer="0000"  
+fi
+naechstesfile=$(printf '%04d' $(($letztenummer + 1)))_$1".png"
+echo "  Naechstes File wird angelegt: $naechstesfile ..."
+
+scrot "$naechstesfile"
+
+if [ -f "$naechstesfile" ]
+  then
+    echo "   ... Screenshot erfolgreich erstellt"
+  else
+    echo "  ***** Speichern Screenshot-File fehlgeschlagen *****"
+    echo "Bash beendet"; exit
+fi            
+echo $(printf '%04d' $(($letztenummer + 1))) > /home/sp/configFiles/screenshootready.txt
+echo "Bash screenShot erfolgreich beendet"
+
+
+
+

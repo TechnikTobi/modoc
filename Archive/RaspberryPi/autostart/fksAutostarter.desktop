@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=fks01startup.py
+Path=/home/sp/
+Exec=python3.6 /home/sp/fks01startup.py
+StartupNotify=false
+Terminal=yes
+Hidden=false
+
+Name[en_GB]=fksAutostarter.desktop

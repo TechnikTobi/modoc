@@ -1,0 +1,21 @@
+sudo apt-get install build-essential checkinstall
+sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+cd /usr/src
+sudo wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz
+sudo tar xzf Python-3.6.0.tgz
+cd Python-3.6.0
+sudo -s
+bash configure
+make altinstall
+exit
+
+
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=pythonprogramm
+#Exec=sudo idle /var/www/html/pythonprogramm.py
+Exec=sudo /var/www/html/pythonprogramm.py
+StartupNotify=false
+Terminal=yes
+Hidden=false

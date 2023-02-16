@@ -1,0 +1,37 @@
+####################################################################
+### Hier gibts Beschreibung für die Eintragung in den config - Files
+####################################################################
+
+fensterBreite;1920
+fensterHoehe;103
+
+fensterBreiteAufteilungWertegruppenRundinstrumente;40
+... % der Fensterbreite für die Graphen (Rest für die Fensterbreite der Rundinstrumente) 
+... Wertebereich zwischen: 11...89
+
+fensterHoeheAufteilungWertegruppenRundinstrumente;30
+... % der Fensterhöhe für die Wertegruppen (Rest ist für die Fensterhöhe derRundinstrumente)
+... Wertebereich zwischen: 31...69
+
+abstandZumRand;10
+dockHoehe;100
+rundinstrumentSchattenXoffset;10
+rundinstrumentSchattenYoffset;10
+
+Rundinstrumente;Temp3/Temp4
+... Messwerte für die jeweils ein Rundinstrument dargestellt wird
+... erlaubte Werte: Drehzahl, Drehmoment, Schug, Leistung, Gas, Temp1..Temp8, VCC, TempCPU, arduvers
+... Syntax: Werte mit / getrennt
+
+Graphen;Drehmoment/Drehzahl/Temp1,Temp2
+... Messwerte für die Graphen dargestellt werden, wobei mehrere Messwerte gemeinsam in einem Graphen möglch sind
+... erlaubte Werte: siehe oben
+... Syntax: Graphen getrennt mit /
+...         Werte gemeinsam in einem Graphen getrennt mit ,
+... Beispiel: Graphen;Drehmoment/Drehzahl/Temp1,Temp2
+...           hier gibt es 3 Graphen, im dritten sind Temp1 und Temp2 gemeinsam
+
+Wertegruppe;Temp1/arduvers
+... Messwerte für die jeweils ein Feld in der Wertegruppe dargestellt wird
+... erlaubte Werte: siehe oben
+... Syntax: Werte mit / getrennt

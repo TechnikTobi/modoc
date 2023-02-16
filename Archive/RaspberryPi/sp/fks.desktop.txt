@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=fks01startup.py
+#Exec=sudo idle /var/www/html/pythonprogramm.py
+Exec=sudo python3 /home/sp/fks01startup.py
+StartupNotify=false
+Terminal=yes
+Hidden=false
+

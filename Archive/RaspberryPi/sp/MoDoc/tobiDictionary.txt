@@ -1,0 +1,42 @@
+xSchatten = rundinstrumentSchattenXoffset
+ySchatten = rundinstrumentSchattenYoffset
+fh = fensterHoehe
+fb = fensterBreite
+fhteil = fensterHoeheAufteilungWertegruppenRundinstrumente
+fbteil = fensterBreiteAufteilungWertegruppenRundinstrumente
+rand = abstandZumRand
+dockh = dockHoehe
+
+
+rxm = self.mittelpunktX
+rym = self.mittelpunktY
+
+rx1 = self.posX1
+rx2 = self.posX2
+ry1 = self.posY1
+ry2 = self.posY2
+
+rrad = self.radius
+
+rst1 strichEndeDistanzRand
+rst2 strichAnfangDistanzRand
+rstt
+
+rin = self.zeigerKreisRadius
+
+rzei = self.zeigerLaenge
+rzb = self.zeigerBreite
+rau = self.graueFlächeRadius
+
+dasOval = zeigerKreis
+
+
+# Todo:
+- Glättung
+- Kalibrieren
+- Tasten-Input
+- Benutzer Auswahl
+- Einlesen der Messobjekte aus .csv
+- Einlesen der Instrumente aus .csv (User-Conifg?)
+- Messwerte-Font in Rundinstrment richtig skalieren
+- Sampling Rate bei den Graphen

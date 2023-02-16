@@ -1,0 +1,12 @@
+fensterBreite;2286
+fensterHoehe;1448
+fensterBreiteAufteilungWertegruppenRundinstrumente;40
+fensterHoeheAufteilungWertegruppenRundinstrumente;21
+abstandZumRand;10
+dockHoehe;100
+rundinstrumentSchattenXoffset;5
+rundinstrumentSchattenYoffset;5
+glaettung;12
+Rundinstrumente;Drehzahl/Schub/Leistung
+Graphen;Drehzahl/Temp1,Temp2,Temp3,Temp4,Temp5,Temp6,Temp7,Temp8
+Wertegruppe;Drehzahl/Drehmoment/VCC/TempCPU/Temp1/Temp2/Temp3/Temp4/Temp5/Temp6/Temp7/Temp8

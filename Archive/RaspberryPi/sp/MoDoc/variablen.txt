@@ -1,0 +1,161 @@
+user
+raspvers
+arduvers
+rasp
+usbsim
+adcdirekt
+prüfstand
+logg
+LowSampingGrenze
+EH_Schub
+drehmoment_kal
+schub_kal
+fontsizefaktor
+MesswertAnzahl
+History
+MaxAnzRundinstrumente
+MaxAnzWertegruppen
+MaxAnzWertegruppen
+MaxAnzGraphen
+MaxAnzVerschiedeneGraphen
+grlegendenhoehe
+arduinoUSBstartpin
+Glättung
+Design
+fFrame
+fBackground
+fDock
+fDockbg
+fDockfg
+fDockTast
+fEingabebg
+fEingabefg
+fRundinstument_Back
+fRundinstument_Label
+fRundinstument_Linie
+fRundinstument_Schatten
+fRundinstument_Zeiger
+fRundinstument_Rahmen
+Messwertfarbebg
+Messwertfarbefg
+fButtonfg
+fAchse
+grAchsenFarbe
+grAchsenLabelFarbebg
+grAchsenLabelFarbefg
+fAlarmbg
+fAlarmfg
+global dockx1
+global dockx2
+global docky1
+global docky2
+global grx1
+global grx2
+global gry1
+global gry2
+global grh
+global grlegendenhoehe
+global grAchsenFarbe
+global grAchsenLabelFarbebg
+global grAchsenLabelFarbefg
+global grAchsenDicke
+global grHilfslinienDicke
+global grLinienDicke
+global grXsampling
+global wgx1
+global wgx2
+global wgy1
+global wgy2
+global wgwertfont
+global wgwertsize
+global wgwertabstand
+global rundx1
+global rundx2
+global rundy1
+global rundy2
+global Rundinstrumente
+global rx1
+global rx2
+global ry1
+global ry2
+global rxm für Ruindinstrumente Koordinate in X Richtung Mittelpunkt
+global rym
+global rrad
+global rau
+global rst1
+global rst2
+global rstt
+global rin
+global rzei
+global rzb
+global rad_i
+
+
+Funktionen:
+- SetDesign
+- configLesen
+- configSchreiben
+- modoc_configLesen
+- modoc_configSchreiben
+- GUIReset
+- AnzeigeGraphenReset
+- AnzeigeObjekteReset
+- Aufrunden125
+- Abrunden125
+- Abrunden2te05
+
+
+Klassen:
+- c_Graph
+        - __init__
+        - zeichneGraph
+        - deleteGraph
+        - updateGraph
+- c_Wertegruppe
+        - __init__
+        - zeichneWertegruppe
+        - deleteWertegruppe
+        - updateWertegruppe
+- Rundinstrument
+        - __init__
+        - zeichneRundinstrument
+        - deleteRundinstrument
+        - updateRundinstrument
+- App
+        - __init__
+        - KalibrierenStart
+        - Kalibrieren
+        - UserKeyInFinished
+        - UserKeyIn
+        - DesignKeyIn
+        - Dockfelder
+        - Restart
+        - Shutdown
+        - Alarmanzeige
+        - LeseUSBline
+        - Tempmap
+        - LeseUSB
+
+
+
+Neue Klassen:
+- Dock
+
+
+
+
+Gestrichene/Tote Variablen:
+- wi1 (Vorkommen: 1)
+- wi2 (Vorkommen: 1)
+- di1 (Vorkommen: 1)
+
+
+
+Mängel:
+- Dutzende Variablen die gar nicht gebraucht werden
+- Willkürliche, teilweise nichts sagende Variablen Bezeichnungen
+        Bsp.: Boolean mit der Bezeichnung "Graphenlinie"
+        Bsp.: grAchse (Du hast selber nicht mehr gewusst was eine grAchse ist)
+- Löschen von Objekten die nie initialisiert wurden
+- Von der Init Funktion direkt in eine Endlosschleife (Init wird nie verlassen!)
+- import einer Library mitten im Programmtext (subprocess)
